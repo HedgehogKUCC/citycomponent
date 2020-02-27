@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Vue.js Section 6：Component</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/fontawesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    />
+  </head>
+  <body ontouchstart>
+    <h1 class="mt-0" style="color: #4fc08d; text-align: center;">
+      作業練習：元件變換
+    </h1>
+
+    <h6>模板練習作業：Ajax 資料內容呈現</h6>
+    <p>本作業一定要用到元件。</p>
+    <div class="alert alert-secondary">
+      <p>提示：</p>
+      <ol class="mb-0">
+        <li>將資料內容透過 "元件" 呈現</li>
+        <li>製作城市過濾選項</li>
+        <li>將內層資料透過 emit 傳遞到外層 (作為另一個關注城市的呈現)</li>
+        <li>依據不同污染呈現不同色彩</li>
+        <li>加分題：透過 localStorage 儲存上次關注的城市</li>
+      </ol>
+    </div>
+
+    <div id="app">
+      <select name="" id="" class="form-control mb-3" v-model="filter">
+        <option value="" disabled>--- 請選擇城市 ---</option>
+        <option :value="item" v-for="item in location">
+          {{ item }}
+        </option>
+      </select>
+      <div>
+        <h4>關注城市</h4>
+        <div class="card-columns">
+          <card-component
+            v-for="item in stared"
+            :card-data="item"
+            :key="item.SiteId"
+            :stared="stared"
+            @change-star="setStared"
+          ></card-component>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="card-columns">
+        <card-component
+          v-for="item in filterArray"
+          :card-data="item"
+          :key="item.SiteId"
+          :stared="stared"
+          @change-star="setStared"
+        ></card-component>
+      </div>
+    </div>
+
+    <script type="text/x-template" id="cardComponentTemplate">
+      <div class="card" :class="cardColor">
+        <div class="card-header">
+          {{ cardData.County }} - {{ cardData.SiteName }}
+          <a href="#" class="float-right" @click.prevent="clickStar"><i class="fa-star" :class="starColor"></i></a>
+        </div>
+        <div class="card-body">
+          <ul class="list-unstyled">
+            <li>AQI 指數: {{ cardData.AQI }}</li>
+            <li>PM2.5: {{ cardData['PM2.5'] }}</li>
+            <li>說明: {{ cardData.Status }}</li>
+          </ul>
+          {{ cardData.PublishTime }}
+        </div>
+      </div>
+    </script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script type="text/javascript" src="js/vendor.622f2c0a.js"></script><script type="text/javascript" src="js/index.622f2c0a.js"></script></body>
+</html>
