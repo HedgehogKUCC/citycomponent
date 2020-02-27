@@ -41,3 +41,7 @@ const app = new Vue({
     this.fetchAsync()
   }
 })
+
+Vue.component('card-component', {
+  template: '#cardComponentTemplate'
+})
