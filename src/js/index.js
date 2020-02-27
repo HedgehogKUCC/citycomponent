@@ -1,8 +1,8 @@
 import '../scss/index.scss'
 import '@babel/polyfill';
-import "@fortawesome/fontawesome-free";
-import "@fortawesome/fontawesome-free-solid";
-import "@fortawesome/fontawesome-free-regular";
+// import "@fortawesome/fontawesome-free";
+// import "@fortawesome/fontawesome-free-solid";
+// import "@fortawesome/fontawesome-free-regular";
 
 // API 來源
 // https://opendata.epa.gov.tw/Data/Contents/AQI/
@@ -35,6 +35,11 @@ const app = new Vue({
 
       // console.log(vm.location);
 
+    },
+    setStared(item) {
+      const vm = this
+      if(vm.stared.indexOf(item) === -1) vm.stared.push(item)
+      else vm.stared.splice(vm.stared.indexOf(item), 1)
     }
   },
   computed: {
@@ -51,7 +56,7 @@ const app = new Vue({
 
 Vue.component('card-component', {
   template: '#cardComponentTemplate',
-  props: ['cardData'],
+  props: ['cardData', 'stared'],
   computed: {
     cardColor() {
       switch(this.cardData.Status) {
@@ -78,6 +83,15 @@ Vue.component('card-component', {
         default:
           return ''
       }
+    },
+    starColor() {
+      if(this.stared.indexOf(this.cardData) === -1) return 'far'
+      else return 'fas'
+    }
+  },
+  methods: {
+    clickStar() {
+      this.$emit('change-star', this.cardData)
     }
   }
 })
