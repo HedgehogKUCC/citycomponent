@@ -13,7 +13,8 @@ const app = new Vue({
     data: [],
     location: [],
     stared: [],
-    filter: ''
+    filter: '',
+    staredLocalStor: JSON.parse(localStorage.getItem('staredData')) || []
   },
   methods: {
     async fetchAsync() {
@@ -34,12 +35,22 @@ const app = new Vue({
       vm.location = allCity.filter((e, i, a) => a.indexOf(e) === i )
 
       // console.log(vm.location);
+      
+      vm.staredLocalStor.forEach(stared => {
+        vm.data.forEach(data => {
+          if(stared === data.SiteName) vm.stared.push(data)
+        })
+      })
 
     },
     setStared(item) {
       const vm = this
       if(vm.stared.indexOf(item) === -1) vm.stared.push(item)
       else vm.stared.splice(vm.stared.indexOf(item), 1)
+
+      vm.staredLocalStor = vm.stared.map(item => item.SiteName)
+
+      localStorage.setItem('staredData', JSON.stringify(vm.staredLocalStor))
     }
   },
   computed: {
