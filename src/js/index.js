@@ -51,5 +51,33 @@ const app = new Vue({
 
 Vue.component('card-component', {
   template: '#cardComponentTemplate',
-  props: ['cardData']
+  props: ['cardData'],
+  computed: {
+    cardColor() {
+      switch(this.cardData.Status) {
+        case '普通':
+          return 'status-aqi2'
+          break
+
+        case '對敏感族群不健康':
+          return 'status-aqi3'
+          break
+        
+        case '對所有族群不健康':
+          return 'status-aqi4'
+          break
+
+        case '非常不健康':
+          return 'status-aqi5'
+          break
+
+        case '危害':
+          return 'status-aqi6'
+          break
+
+        default:
+          return ''
+      }
+    }
+  }
 })

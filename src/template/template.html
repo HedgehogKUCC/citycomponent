@@ -53,7 +53,7 @@
     </div>
 
     <script type="text/x-template" id="cardComponentTemplate">
-      <div class="card status-aqi2">
+      <div class="card" :class="cardColor">
         <div class="card-header">
           {{ cardData.County }} - {{ cardData.SiteName }}
           <a href="#" class="float-right"><i class="far fa-star"></i></a>
