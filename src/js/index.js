@@ -1,8 +1,5 @@
 import '../scss/index.scss'
 import '@babel/polyfill';
-// import "@fortawesome/fontawesome-free";
-// import "@fortawesome/fontawesome-free-solid";
-// import "@fortawesome/fontawesome-free-regular";
 
 // API 來源
 // https://opendata.epa.gov.tw/Data/Contents/AQI/

@@ -27,10 +27,7 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.8.3",
-    "@fortawesome/fontawesome-free": "^5.12.1",
-    "@fortawesome/fontawesome-free-regular": "^5.0.13",
-    "@fortawesome/fontawesome-free-solid": "^5.0.13"
+    "@babel/polyfill": "^7.8.3"
   },
   "browserslist": {
     "production": [
