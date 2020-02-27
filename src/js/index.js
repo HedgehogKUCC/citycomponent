@@ -6,6 +6,7 @@ import '@babel/polyfill';
 
 // API 來源
 // https://opendata.epa.gov.tw/Data/Contents/AQI/
+// 跨域設定 https://cors-anywhere.herokuapp.com/ + api
 
 const app = new Vue({
   el: '#app',
@@ -19,7 +20,7 @@ const app = new Vue({
   methods: {
     async fetchAsync() {
       const vm = this
-      const api = 'http://opendata2.epa.gov.tw/AQI.json'
+      const api = 'https://cors-anywhere.herokuapp.com/http://opendata2.epa.gov.tw/AQI.json'
       let res = await fetch(api)
       let data = await res.json()
       vm.data = data
