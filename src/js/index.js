@@ -37,11 +37,19 @@ const app = new Vue({
 
     }
   },
+  computed: {
+    filterArray() {
+      const vm = this
+      if (vm.filter === '') return vm.data
+      else return vm.data.filter(e => e.County === vm.filter)
+    }
+  },
   created() {
     this.fetchAsync()
   }
 })
 
 Vue.component('card-component', {
-  template: '#cardComponentTemplate'
+  template: '#cardComponentTemplate',
+  props: ['cardData']
 })

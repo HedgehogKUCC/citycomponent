@@ -39,31 +39,32 @@
       </select>
       <div>
         <h4>關注城市</h4>
-        <div class="card-columns">
-          <card-component></card-component>
-        </div>
+        <div class="card-columns"></div>
       </div>
 
       <hr />
 
       <div class="card-columns">
-        <card-component></card-component>
+        <card-component
+          v-for="item in filterArray"
+          :card-data="item"
+        ></card-component>
       </div>
     </div>
 
     <script type="text/x-template" id="cardComponentTemplate">
       <div class="card status-aqi2">
         <div class="card-header">
-          苗栗縣 - 三義
+          {{ cardData.County }} - {{ cardData.SiteName }}
           <a href="#" class="float-right"><i class="far fa-star"></i></a>
         </div>
         <div class="card-body">
           <ul class="list-unstyled">
-            <li>AQI 指數: 54</li>
-            <li>PM2.5: 8</li>
-            <li>說明: 普通</li>
+            <li>AQI 指數: {{ cardData.AQI }}</li>
+            <li>PM2.5: {{ cardData['PM2.5'] }}</li>
+            <li>說明: {{ cardData.Status }}</li>
           </ul>
-          2018-05-20 16:00
+          {{ cardData.PublishTime }}
         </div>
       </div>
     </script>
